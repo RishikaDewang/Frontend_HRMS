@@ -38,8 +38,9 @@ export default function Myattendance() {
   const [isManualDateChange, setIsManualDateChange] = useState(false);
   useEffect(() => {
     // Get current month's start and end dates
-    const startDate = moment().startOf('month').format('YYYY-MM-DD');
-    const endDate = moment().format('YYYY-MM-DD');
+    const startDate = moment().startOf('month').format('YYYY-MM-DD HH:mm:ss');
+const endDate = moment().format('YYYY-MM-DD HH:mm:ss');
+
     console.log('enddate', endDate);
     if (!isManualDateChange) {
       dispatch(filterattendance(id||employeeid, startDate, endDate));
