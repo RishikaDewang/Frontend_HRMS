@@ -1,0 +1,423 @@
+// theme constant
+const ActionTypes = {
+    // theme constants
+    GRID_SPACING: 3,
+    DRAWER_WIDTH: 260,
+    APP_DRAWER_WIDTH: 320,
+  
+    // Login Constants
+    LOGIN: {
+      REQUEST: 'LOGIN_REQUEST',
+      SUCCESS: 'LOGIN_SUCCESS',
+      FAILURE: 'LOGIN_FAILURE',
+      SET_USER_DATA: 'SET_USER_DATA',
+    },
+  
+    // Role Constants
+    ROLES: {
+      FETCH: 'FETCH_ROLE',
+      SET: 'SET_ROLE',
+    },
+  
+    // Create Role with Permissions Actions
+    CREATE_ROLE_WITH_PERMISSIONS: {
+      REQUEST: 'CREATE_ROLE_WITH_PERMISSIONS_REQUEST',
+      SUCCESS: 'CREATE_ROLE_WITH_PERMISSIONS_SUCCESS',
+      FAILURE: 'CREATE_ROLE_WITH_PERMISSIONS_FAILURE',
+    },
+  
+    // Fetch Permissions by Role
+    PERMISSIONS_BY_ROLE: {
+      FETCH: 'FETCH_PERMISSIONS_BY_ROLE',
+      SET: 'SET_PERMISSIONS_BY_ROLE',
+    },
+  
+    // Edit Permission by Role
+    EDIT_PERMISSIONS_REQUEST: 'EDIT_PERMISSIONS_REQUEST',
+  
+    // Fetch My Profile
+    MY_PROFILE: {
+      FETCH: 'FECTCH_MY_PROFILE',
+      SET: 'SET_MY_PROFILE',
+    },
+  
+    // Fetch My Address
+    MY_ADDRESS: {
+      FETCH: 'FECTCH_MY_ADDRESS',
+      SET: 'SET_MY_ADDRESS',
+    },
+  
+    // Update Profile Info
+    UPDATE_PROFILE_REQUEST: 'UPDATE_PROFILE_REQUEST',
+  
+    // Update Address Info
+    UPDATE_ADDRESS_REQUEST: 'UPDATE_ADDRESS_REQUEST',
+  
+    // Fetch Emergency Contact
+    EMERGENCY_CONTACT: {
+      FETCH: 'FECTCH_EMERGENCY_CONTACT',
+      SET: 'SET_EMERGENCY_CONTACT',
+      UPDATE_REQUEST: 'UPDATE_EMERGENCY_REQUEST',
+    },
+  
+    // Fetch Bank Information
+    BANK_INFORMATION: {
+      FETCH: 'FECTCH_BANK_INFORMATION',
+      SET: 'SET_BANK_INFORMATION',
+      UPDATE_REQUEST: 'UPDATE_BANK_REQUEST',
+    },
+  
+    // Fetch Company's Employee
+    EMPLOYEE: {
+      FETCH: 'FECTCH_EMPLOYEE',
+      SET: 'SET_EMPLOYEE',
+      CREATE_REQUEST: 'CREATE_EMPLOYEE_REQUEST',
+      CREATE_SUCCESS: 'CREATE_EMPLOYEE_SUCCESS',
+      CREATE_FAILURE: 'CREATE_EMPLOYEE_FAILURE',
+      CREATE_RESET: 'CREATE_EMPLOYEE_RESET',
+      DELETE: 'DELETE_EMPLOYEE',
+    },
+  
+    // Fetch Company's Employee Time Off
+    EMPLOYEE_TIME_OFF: {
+      FETCH: 'FECTCH_EMPLOYEE_TIMEOFF',
+      SET: 'SET_EMPLOYEE_TIMOFF',
+    },
+  
+    // Request Time Off
+    CREATE_TIME_OFF_REQUEST: 'CREATE_TIMEOFF_REQUEST',
+  
+    // Fetch All Employees Time Off
+    ALL_EMPLOYEES_TIME_OFF: {
+      FETCH: 'FECTCH_ALL_EMPLOYESS_TIMEOFF',
+      SET: 'SET_ALL_EMPLOYEES_TIMOFF',
+    },
+  
+    // Signup
+    SIGNUP: {
+      REQUEST: 'SIGNUP_REQUEST',
+      SUCCESS: 'SIGNUP_SUCCESS',
+      FAILURE: 'SIGNUP_FAILURE',
+      RESET: 'SIGNUP_RESET',
+    },
+  
+    // My Attendance Fetch
+    MY_ATTENDANCE: {
+      FETCH: 'FETCH_MY_ATTENDANCE',
+      SET: 'SET_MY_ATTENDANCE',
+    },
+  
+    // Clock In and Clock Out
+    CLOCK: {
+      IN_REQUEST: 'CLOCK_IN_REQUEST',
+      OUT_REQUEST: 'CLOCK_OUT_REQUEST',
+    },
+  
+    // Attendance Summary
+    ATTENDANCE_SUMMARY: {
+      FETCH: 'FETCH_ATTENDANCE_SUMMARY',
+      SET: 'SET_ATTENDANCE_SUMMARY',
+    },
+  
+    // Employee Attendance
+    EMPLOYEE_ATTENDANCE: {
+      FETCH: 'FETCH_EMPLOYE_ATTENDANCE',
+      SET: 'SET_EMPLOYE_ATTENDANCE',
+    },
+  
+    // Reset Redux State
+    RESET_STATE: 'RESET_STATE',
+  
+    // Get Profile Picture
+    PROFILE_PICTURE: {
+      FETCH: 'FETCH_PROFILEPIC',
+      SET: 'SET_PROFILEPIC',
+    },
+  
+    // Upload Image
+    UPLOAD_IMAGE: {
+      REQUEST: 'UPLOAD_IMAGE_REQUEST',
+      SUCCESS: 'UPLOAD_IMAGE_SUCCESS',
+      FAILURE: 'UPLOAD_IMAGE_FAILURE',
+    },
+  
+    // Create QR Code
+    QR_CODE_CREATE: 'QR_CODE_CREATE',
+  
+    // Fetch QR Code
+    QR_CODE: {
+      FETCH: 'FETCH_QRCODE',
+      SET: 'SET_QRCODE',
+    },
+  
+    // Features Update
+    FEATURES: {
+      UPDATE: 'FEATURES_UPDATE',
+      FETCH: 'FETCH_FEATURES',
+      SET: 'SET_FEATURES',
+    },
+  
+    // Fetch News
+    NEWS: {
+      FETCH: 'FETCH_NEWS',
+      SET: 'SET_NEWS',
+      REQUEST: 'NEWS_REQUEST',
+      DELETE: 'DELETE_NEWS',
+    },
+  
+    // Fetch Documents
+    DOCUMENTS: {
+      FETCH: 'FETCH_DOCUMENTS',
+      SET: 'SET_DOCUMENTS',
+      REQUEST: 'DOCUMENT_REQUEST',
+      FETCH_DETAILS: 'FETCH_DOCUMENTS_DETAILS',
+      SET_DETAILS: 'SET_DOCUMENTS_DETAILS',
+      FETCH_DATA: 'FETCH_DOCUMENT_DATA',
+      SET_DATA: 'SET_DOCUMENT_DATA',
+    },
+  
+    // Upload File
+    UPLOAD_FILES: {
+      REQUEST: 'UPLOAD_FILES_REQUEST',
+      SUCCESS: 'UPLOAD_FILES_SUCCESS',
+      FAILURE: 'UPLOAD_FILES_FAILURE',
+      DELETE_FOLDER: 'DELETE_FOLDER',
+      DELETE_FOLDER_FILE: 'DELETE_FOLDER_FILE',
+    },
+  
+    // Jobs
+    JOBS: {
+      FETCH: 'FETCH_JOBS',
+      SET: 'SET_JOBS',
+      CREATE: 'CREATE_JOBS',
+      DELETE: 'DELETE_JOBS',
+    },
+  
+    // Fetch Candidate
+    CANDIDATE: {
+      FETCH: 'FETCH_CANDIDATE',
+      SET: 'SET_CANDIDATE',
+      DELETE: 'DELETE_CANDIDATE',
+    },
+  
+    // Create Candidate
+    ADD_CANDIDATE: {
+      REQUEST: 'ADD_CANDIDATE_REQUEST',
+    },
+  
+    // Stages
+    STAGES: {
+      FETCH: 'FETCH_STAGES',
+      SET: 'SET_STAGES',
+      CREATE: 'CREATE_STAGES',
+      DELETE: 'DELETE_STAGES',
+      UPDATE: 'UPDATE_STAGES',
+    },
+  
+    // Fetch Job Details
+    JOB_DETAILS: {
+      FETCH: 'FETCH_JOBDETAIL',
+      SET: 'SET_JOBDETAIL',
+    },
+  
+    // Fetch Template
+    TEMPLATE: {
+      FETCH: 'FETCH_TEMPLATE',
+      SET: 'SET_TEMPLATE',
+      ADD_REQUEST: 'ADD_TEMPLATE_REQUEST',
+      DELETE: 'DELETE_TEMPLATE',
+    },
+  
+    // Fetch Template Details
+    TEMPLATE_DETAILS: {
+      FETCH: 'FETCH_TEMPLATEDETAIL',
+      SET: 'SET_TEMPLATEDETAIL',
+      UPDATE_REQUEST: 'UPDATE_TEMPLATE_REQUEST',
+    },
+  
+    // Fetch Candidate Profile
+    CANDIDATE_PROFILE: {
+      FETCH: 'FETCH_CANDIDATE_PROFILE',
+      SET: 'SET_CANDIDATE_PROFILE',
+    },
+  
+    // Fetch Template Body Based on Stages
+    TEMPLATE_BODY: {
+      FETCH: 'FETCH_TEMPLATE_BODY',
+      SET: 'SET_TEMPLATE_BODY',
+    },
+  
+    // Fetch Comments
+    COMMENTS: {
+      FETCH: 'FETCH_COMMENTS',
+      SET: 'SET_COMMENTS',
+      POST: 'POST_COMMENT',
+      DELETE: 'DELETE_COMMENT',
+    },
+  
+    // Fetch Holiday
+    HOLIDAY: {
+      FETCH: 'FETCH_HOLIDAY',
+      SET: 'SET_HOLIDAY',
+      ADD: 'ADD_HOLIDAY',
+      DELETE: 'DELETE_HOLIDAY',
+    },
+  
+    // Send Mail to Candidate
+    SEND_EMAIL_REQUEST: 'SEND_EMAIL_REQUEST',
+  
+    // Update Candidate Profile
+    SAVE_CANDIDATE_PROFILE_REQUEST: 'SAVE_CANDIDATE_PROFILE_REQUEST',
+  
+    // Add as Employee
+    ADD_AS_EMPLOYEE: 'ADD_AS_EMPLOYEE',
+  
+    // Get Department and Designation Details
+    ALL_DETAILS: {
+      FETCH: 'FETCH_ALL_DETAILS',
+      SET: 'SET_ALL_DETAILS',
+    },
+  
+    // Filter Attendance
+    ATTENDANCE_FILTER: 'ATTENDANCE_FILTER',
+    SET_ATTENDANCE_FILTER: 'SET_ATTENDANCE_FILTER',
+  
+    // Update Timeoff Status
+    UPDDATE_TIMEOFF_STATUS: 'UPDDATE_TIMEOFF_STATUS',
+  
+    // Logout
+    LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+  
+    // Import Candidate
+    IMPORT_CANDIDATE: 'IMPORT_CANDIDATE',
+  
+    // Import Employee
+    IMPORT_EMPLOYEE: 'IMPORT_EMPLOYEE',
+  
+    // Bulk CV
+    UPLOAD_BULK_CV: 'UPLOAD_BULK_CV',
+  
+    // Bulk CD
+    UPLOAD_ATTENDANCE: 'UPLOAD_ATTENDANCE',
+  
+    // Update Employee
+    UPDATE_EMPLOYEE: 'UPDATE_EMPLOYEE',
+  
+    // Assign Job
+    ASSIGN_JOB: 'ASSIGN_JOB',
+  
+    // Forgot Password
+    FORGOT_PASSWORD: {
+      REQUEST: 'FORGOT_PASSWORD_REQUEST',
+      FAILURE: 'FORGOT_PASSWORD_FAILURE',
+      SUCCESS: 'FORGOT_PASSWORD_SUCCESS',
+    },
+  
+    // Reset Password
+    RESET_PASSWORD: {
+      REQUEST: 'RESET_PASSWORD_REQUEST',
+      SUCCESS: 'RESET_PASSWORD_SUCCESS',
+      FAILURE: 'RESET_PASSWORD_FAILURE',
+    },
+  
+    // Get Country
+    COUNTRY: {
+      FETCH: 'FETCH_COUNTRY',
+      SET: 'SET_COUNTRY',
+    },
+  
+    // Get State
+    STATE: {
+      FETCH: 'FETCH_STATE',
+      SET: 'SET_STATE',
+    },
+  
+    // Get City
+    CITY: {
+      FETCH: 'FETCH_CITY',
+      SET: 'SET_CITY',
+    },
+  
+    // Get Nationality
+    NATIONALITY: {
+      FETCH: 'FETCH_NATIONALITY',
+      SET: 'SET_NATIONALITY',
+    },
+
+    SECTIONS:{
+        FETCH:'FETCH_SECTIONS',
+        SET:'SET_SECTIONS'
+    },
+
+    MODULE:{
+        FETCH:'FETCH_MODULE',
+        SET:'SET_MODULE'
+    },
+
+    FILTER:{
+        EMPLOYEE:'FILTER_EMPLOYEE',
+    },
+    ACTIVATE_COMPANY:{
+        REQUEST: 'ACTIVATE_COMPANY_REQUEST',
+        SUCCESS: 'ACTIVATE_COMPANY_SUCCESS',
+        FAILURE: 'ACTIVATE_COMPANY_FAILURE'
+    },
+    WORKSCHEDULE:{
+      FETCH:'FETCH_WORKSCHEDULE',
+      SET:'SET_WORKSCHEDULE',
+      CREATE:'CREATE_WORKSCHEDULE',
+      DELETE : 'DELETE_WORKSCHEDULE',
+      UPDATE:'UPDATE_WORKSCHEDULE'
+  },
+  OFFICES:{
+      FETCH:'FETCH_OFFICES',
+      SET:'SET_OFFICES',
+      CREATE:'CREATE_OFFICES',
+      DELETE : 'DELETE_OFFICES',
+      UPDATE:'UPDATE_OFFICES'
+  },
+  EMPLOYEE_WORKSCHEDULE:{
+    FETCH:'FETCH_EMPLOYEE_WORKSCHEDULE',
+    SET:'SET_EMPLOYEE_WORKSCHEDULE',
+    UPDATE:'UPDATE_EMPLOYEE_WORKSCHEDULE'
+},
+BUTTON:{
+  SET:'SET_BUTTON',
+},
+EMPLOYEE_OFFICE:{
+  FETCH:'FETCH_EMPLOYEE_OFFICE',
+  SET:'SET_EMPLOYEE_OFFICE',
+  UPDATE:'UPDATE_EMPLOYEE_OFFICE'
+},
+
+EMPLOYMENT_TYPE:{
+  FETCH:'FETCH_EMPLOYMENT_TYPE',
+  SET:'SET_EMPLOYMENT_TYPE',
+  UPDATE:'UPDATE_EMPLOYMENT_TYPE'
+},
+OFFICE_ID:{
+  FETCH:'FETCH_OFFICE_ID',
+  SET:'SET_OFFICE_ID',
+},
+
+EMPLOYEE_EMPLOYMENT:{
+  FETCH:'FETCH_EMPLOYEE_EMPLOYMENT',
+  SET:'SET_EMPLOYEE_EMPLOYMENT',
+},
+
+POLICIES:{
+  FETCH:'FETCH_POLICIES',
+  SET:'SET_POLICIES',
+  CREATE: 'CREATE_POLICIES',
+  DELETE:'DELETE_POLICIES'
+},
+
+LEAVE_COUNT:{
+  FETCH:'FETCH_LEAVE_COUNT',
+  SET:'SET_LEAVE_COUNT',
+},
+  };
+  
+  export default ActionTypes;
+
+

@@ -1,0 +1,8 @@
+.dTuutX {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(227, 235, 241);
+    padding: 8px 24px;
+    border-radius: 4px;
+    margin-bottom: 15px
+  }

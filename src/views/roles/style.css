@@ -1,0 +1,43 @@
+@import '../../utils/constant.css';
+
+.role-button{
+    margin-bottom: 10px;
+    float: right;
+}
+/* Style for the container div */
+.role-form-field {
+    margin-bottom: 30px; /* Add spacing between the fields */
+  }
+  /* Style for the labels */
+  label {
+    display: flex; 
+    font-weight: var(--font-weight-medium); 
+  }
+  /* Style for the text inputs */
+  .input-box{
+    margin-left: 20px;
+    width: 85%; 
+    padding: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+  }
+  /* RoleModal.css */
+.role-modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: auto;
+  background-color: white;
+  /* border: 2px solid #000; */
+  box-shadow: 24px;
+  padding: 16px;
+  border-radius: 7px;
+}
+
+.role-form-field {
+  margin-top: 10px;
+}
+
+

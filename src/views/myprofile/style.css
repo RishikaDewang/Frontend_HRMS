@@ -1,0 +1,32 @@
+.flex-container {
+  display: flex;
+  flex-direction: column; /* Stack the elements vertically */
+}
+
+.button-container {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end; /* Align the button container to the right */
+  margin-bottom: 20px; /* Add margin to separate the button container from the form */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 32px;
+}
+
+
+.Profile-button-container {
+  display: flex;
+  justify-content: flex-start; /* Align the buttons to the right */
+  margin-top: 20px; /* Add margin to separate the buttons from the form */
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container > div {
+  margin-bottom: 20px; 
+}

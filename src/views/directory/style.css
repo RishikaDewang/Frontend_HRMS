@@ -1,0 +1,13 @@
+.pagination-container {
+    margin-top: 16px; /* Adjust the margin as needed */
+    display: flex;
+    justify-content: flex-end;
+  }
+  .employee-search{
+    width: 40%;
+  }
+  .manage-buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }

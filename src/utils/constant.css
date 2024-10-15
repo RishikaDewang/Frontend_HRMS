@@ -1,0 +1,62 @@
+/* constants.css */
+
+:root {
+  --font-family: 'IBM Plex Sans', sans-serif;
+
+  /*  fonts sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-s: 0.875rem;
+  --font-size-m: 1rem; 
+  --font-size-l: 1.25rem; 
+  --font-size-xl: 1.5rem; 
+  --font-size-xxl: 2rem;
+
+  /* fonts weight */
+  --font-weight-light: 300; 
+  --font-weight-regular: 400; 
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600; 
+  --font-weight-bold: 700;
+
+  /* fonts colors */
+    /* Primary Colors */
+    --primary-light: #eef2f6;
+    --primary-main: #2196f3;
+    --primary-dark: #1e88e5;
+    --primary-200: #90caf9;
+    --primary-800: #1565c0;
+  
+    /* Secondary Colors */
+    --secondary-light: #ede7f6;
+    --secondary-main: #673ab7;
+    --secondary-dark: #5e35b1;
+    --secondary-200: #b39ddb;
+    --secondary-800: #4527a0;
+  
+    /* Success Colors */
+    --success-light: #b9f6ca;
+    --success-200: #69f0ae;
+    --success-main: #00e676;
+    --success-dark: #00c853;
+  
+    /* Error Colors */
+    --error-light: #ef9a9a;
+    --error-main: #f44336;
+    --error-dark: #c62828;
+  
+    /* Orange Colors */
+    --orange-light: #fbe9e7;
+    --orange-main: #ffab91;
+    --orange-dark: #d84315;
+  
+    /* Warning Colors */
+    --warning-light: #fff8e1;
+    --warning-main: #ffe57f;
+    --warning-dark: #ffc107;
+  
+    /* white Colors */
+    --white-50: #f8fafc;
+    --white-500: #697586;
+
+ 
+}

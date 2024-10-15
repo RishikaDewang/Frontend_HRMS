@@ -1,0 +1,17 @@
+.holiday_button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+.field-container {
+    display: grid;
+    column-gap: 26px;
+    grid-template-columns: 150px minmax(0px, 1fr);
+    grid-template-areas: "title content" ". help";
+  }
+  .policie-container{
+    margin-top: '10px';
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+  }
