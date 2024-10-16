@@ -57,8 +57,8 @@ const endDate = moment().format('YYYY-MM-DD HH:mm:ss');
     if (dates && dates[0] && dates[1]) {
       setIsManualDateChange(true);
       console.log('dates && dates[0] && dates[1]', dates, dates[0], dates[1]);
-      const startDate = dates[0].format('YYYY-MM-DD');
-      const endDate = dates[1].format('YYYY-MM-DD');
+      const startDate = dates[0].format('YYYY-MM-DD HH:mm:ss');
+      const endDate = dates[1].format('YYYY-MM-DD HH:mm:ss');
       console.log('start dtae and end date ', startDate, endDate);
 
       dispatch(filterattendance(id||employeeid, startDate, endDate));
@@ -122,12 +122,12 @@ const handleClockButtonClick = () => {
 
   if (selectedDates && selectedDates.length === 2) {
     // If manual dates are selected, use them
-    startDate = selectedDates[0].format('YYYY-MM-DD');
-    endDate = selectedDates[1].format('YYYY-MM-DD');
+    startDate = selectedDates[0].format('YYYY-MM-DD HH:mm:ss');
+    endDate = selectedDates[1].format('YYYY-MM-DD HH:mm:ss');
   } else {
     // If no manual dates selected, use the current date
-    startDate = moment().startOf('month').format('YYYY-MM-DD');
-    endDate = moment().format('YYYY-MM-DD');
+    startDate = moment().startOf('month').format('YYYY-MM-DD HH:mm:ss');
+    endDate = moment().format('YYYY-MM-DD HH:mm:ss');
   }
 
   const requestBody = {
