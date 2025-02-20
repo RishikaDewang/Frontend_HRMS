@@ -1,5 +1,5 @@
 // Define a constants for the base URL of your API.
-export const BASE_URL = 'https://hrms-backend-hos0.onrender.com/api/'
+export const BASE_URL = 'https://hrms-backend-josj.onrender.com/api/'
 // export const BASE_URL_SECOND = 'https://10.0.0.183/api/'
 export const AUTH = 'auth/'
 export const LOGIN = 'login'

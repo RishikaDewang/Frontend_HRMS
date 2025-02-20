@@ -33,6 +33,16 @@ const attendance = {
         icon: icons.IconWindmill,
         breadcrumbs: false,
         moduleId: 5, 
+      },
+      
+      {
+        id: 'util-emp-payroll',
+        title: 'Payroll',
+        type: 'item',
+        url: '/attendance/Payroll',
+        icon: icons.IconWindmill,
+        breadcrumbs: false,
+        moduleId: 5,
       }
 ]
   

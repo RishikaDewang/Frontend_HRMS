@@ -51,6 +51,7 @@ const Jobdetails = Loadable(lazy(()=> import('views/recruitment/JobDetails')))
 const Candidate = Loadable(lazy(()=> import('views/recruitment/Candidate')))
 const RecruitmentSetting = Loadable(lazy(()=>import('views/recruitment/Settings')))
 const TimeoffSetting = Loadable(lazy(()=> import('views/Timeoff/Setting')))
+const Payroll = Loadable(lazy(()=>import('views/attendance/Payroll')))
 const Offices  = Loadable(lazy(()=> import('views/attendance/Offices')))
 const WorkSchedule = Loadable(lazy(()=> import('views/attendance/Workschedule')))
 // ==============================|| MAIN ROUTING ||============================== //
@@ -252,6 +253,10 @@ const MainRoutes = {
           path: 'settings',
           element: <PrivateRoute element={Attsettings} moduleId={6}/>
         }, 
+        {
+          path: 'Payroll',
+          element:  <Payroll/>
+        },
         {
           path: 'offices',
           element: <PrivateRoute element={Offices} moduleId={6}/>
