@@ -36,22 +36,36 @@ const Payroll = () => {
     const inputData = manualInputs[employee.employeeId] || {};
     const grossSalary = employee.grossSalary || 0;
     const payPerDay = grossSalary / 25; // Keep old logic
+
     const totalLeaves = inputData.totalLeaves ?? employee.totalLeaves ?? 0;
     const halfDayLeaves = inputData.halfDayLeaves ?? employee.halfDayLeaves ?? 0;
     const paidLeaves = employee.paidLeaves || 0;
-    let unpaidLeaves = Math.max(totalLeaves - paidLeaves, 0);
-    let halfDayDeduction = 0;
-    // Half-day deduction condition
-    if (!(totalLeaves === 0 && halfDayLeaves <= 2)) {
-        halfDayDeduction = halfDayLeaves * (payPerDay / 2);
-    }
-    const leaveDeduction = unpaidLeaves * payPerDay + halfDayDeduction;
+
+    // Step 1: Convert Half Days into Full Leaves
+    const fullLeavesFromHalfDays = Math.floor(halfDayLeaves / 2);
+    const remainingHalfDays = halfDayLeaves % 2; // If 1 half-day remains, it will be counted separately
+
+    // Step 2: Total Leaves After Conversion
+    const totalEffectiveLeaves = totalLeaves + fullLeavesFromHalfDays;
+
+    // Step 3: Deduct Paid Leaves
+    let unpaidLeaves = Math.max(totalEffectiveLeaves - paidLeaves, 0);
+
+    // Step 4: Calculate Salary Deduction
+    const leaveDeduction = unpaidLeaves * payPerDay;
+    const halfDayDeduction = remainingHalfDays * (payPerDay / 2); // Deduction for any remaining half-day
+
+    // Step 5: Additional Deductions and Additions
     const professionalTax = employee.professionalTax || 0;
     const incomeTax = employee.incomeTax || 0;
     const bonus = inputData.bonus ?? employee.bonus ?? 0;
     const adjustments = inputData.adjustments ?? employee.adjustments ?? 0;
-    return grossSalary - (leaveDeduction + professionalTax + incomeTax) + (bonus + adjustments);
+
+    // Step 6: Final Net Salary Calculation
+    return grossSalary - (leaveDeduction + halfDayDeduction + professionalTax + incomeTax) + (bonus + adjustments);
 };
+
+
   const handleSubmit = async () => {
     setSaving(true);
     try {
@@ -162,14 +176,45 @@ const Payroll = () => {
                 <td>{employee.name}</td>
                 <td>₹{employee.grossSalary}</td>
                 <td>
+                <input
+  type="number"
+  value={
+    manualInputs[employee.employeeId]?.totalLeaves?.toString() ??
+    employee.totalLeaves?.toString() ??
+    "0"
+  }
+  onChange={(e) => {
+    let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+    value = value === "" ? "0" : value; // Ensure empty input resets to 0
+    let intValue = parseInt(value, 10) || 0; // Convert to integer safely
+    if (intValue < 0) intValue = 0; // Prevent negative values
+    if (intValue > 25) intValue = 25; // Prevent values greater than 25
+    handleInputChange(employee.employeeId, "totalLeaves", intValue);
+  }}
+  min="0"
+  max="25"
+  disabled={!employee.isEditable}
+  style={{
+    padding: "8px",
+    borderRadius: "8px",
+    width: "90px",
+    backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
+    border: "1px solid #ddd",
+    transition: "all 0.3s ease",
+  }}
+/>
+
+</td>
+<td>
   <input
     type="number"
-    value={manualInputs[employee.employeeId]?.totalLeaves ?? employee.totalLeaves ?? 0}
+    value={manualInputs[employee.employeeId]?.halfDayLeaves ?? employee.halfDayLeaves ?? 0}
     onChange={(e) => {
-      let value = parseInt(e.target.value, 10) || 0; // Ensure integer
+      let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+      value = parseInt(value, 10) || 0; // Ensure it's an integer
       if (value < 0) value = 0; // Prevent negative values
       if (value > 25) value = 25; // Prevent values greater than 25
-      handleInputChange(employee.employeeId, "totalLeaves", value);
+      handleInputChange(employee.employeeId, "halfDayLeaves", value);
     }}
     min="0"
     max="25"
@@ -185,52 +230,54 @@ const Payroll = () => {
   />
 </td>
                 <td>
-                  <input
-                    type="number"
-                    value={manualInputs[employee.employeeId]?.halfDayLeaves ?? employee.halfDayLeaves ?? 0}
-                    onChange={(e) => handleInputChange(employee.employeeId, "halfDayLeaves", e.target.value)}
-                    disabled={!employee.isEditable}
-                    style={{
-                      padding: "8px",
-                      borderRadius: "8px",
-                      width: "90px",
-                      backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
-                      border: "1px solid #ddd",
-                      transition: "all 0.3s ease",
-                    }}
-                  />
+                <input
+  type="number"
+  value={
+    manualInputs[employee.employeeId]?.bonus?.toString() ??
+    employee.bonus?.toString() ??
+    "0"
+  }
+  onChange={(e) => {
+    let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+    value = value === "" ? "0" : value; // Ensure empty input resets to "0"
+    handleInputChange(employee.employeeId, "bonus", value);
+  }}
+  disabled={!employee.isEditable}
+  style={{
+    padding: "8px",
+    borderRadius: "8px",
+    width: "90px",
+    backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
+    border: "1px solid #ddd",
+    transition: "all 0.3s ease",
+  }}
+/>
+
                 </td>
                 <td>
-                  <input
-                    type="number"
-                    value={manualInputs[employee.employeeId]?.bonus ?? employee.bonus ?? 0}
-                    onChange={(e) => handleInputChange(employee.employeeId, "bonus", e.target.value)}
-                    disabled={!employee.isEditable}
-                    style={{
-                      padding: "8px",
-                      borderRadius: "8px",
-                      width: "90px",
-                      backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
-                      border: "1px solid #ddd",
-                      transition: "all 0.3s ease",
-                    }}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    value={manualInputs[employee.employeeId]?.adjustments ?? employee.adjustments ?? 0}
-                    onChange={(e) => handleInputChange(employee.employeeId, "adjustments", e.target.value)}
-                    disabled={!employee.isEditable}
-                    style={{
-                      padding: "8px",
-                      borderRadius: "8px",
-                      width: "90px",
-                      backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
-                      border: "1px solid #ddd",
-                      transition: "all 0.3s ease",
-                    }}
-                  />
+                <input
+  type="number"
+  value={
+    manualInputs[employee.employeeId]?.adjustments?.toString() ??
+    employee.adjustments?.toString() ??
+    "0"
+  }
+  onChange={(e) => {
+    let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+    value = value === "" ? "0" : value; // Ensure empty input resets to "0"
+    handleInputChange(employee.employeeId, "adjustments", value);
+  }}
+  disabled={!employee.isEditable}
+  style={{
+    padding: "8px",
+    borderRadius: "8px",
+    width: "90px",
+    backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
+    border: "1px solid #ddd",
+    transition: "all 0.3s ease",
+  }}
+/>
+
                 </td>
                 <td style={{ fontWeight: "bold", color: "#28A745" }}>₹{calculateNetSalary(employee).toFixed(2)}</td>
               </tr>
