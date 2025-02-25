@@ -43,13 +43,18 @@ const Payroll = () => {
 
     // Step 1: Convert Half Days into Full Leaves
     const fullLeavesFromHalfDays = Math.floor(halfDayLeaves / 2);
-    const remainingHalfDays = halfDayLeaves % 2; // If 1 half-day remains, it will be counted separately
+    let remainingHalfDays = halfDayLeaves % 2; // ✅ Change `const` to `let`
 
     // Step 2: Total Leaves After Conversion
     const totalEffectiveLeaves = totalLeaves + fullLeavesFromHalfDays;
 
     // Step 3: Deduct Paid Leaves
     let unpaidLeaves = Math.max(totalEffectiveLeaves - paidLeaves, 0);
+
+     // 🔹 Fix: Check if remaining half-day can be covered by paid leave
+     if (remainingHalfDays === 1 && paidLeaves > totalEffectiveLeaves) {
+      remainingHalfDays = 0; // Cover the half-day using paid leave
+  }
 
     // Step 4: Calculate Salary Deduction
     const leaveDeduction = unpaidLeaves * payPerDay;
