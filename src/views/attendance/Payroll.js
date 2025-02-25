@@ -39,7 +39,8 @@ const Payroll = () => {
 
     const totalLeaves = inputData.totalLeaves ?? employee.totalLeaves ?? 0;
     const halfDayLeaves = inputData.halfDayLeaves ?? employee.halfDayLeaves ?? 0;
-    const paidLeaves = employee.paidLeaves || 0;
+    // const paidLeaves = employee.paidLeaves || 0;
+    const paidLeaves = inputData.paidLeaves ?? employee.paidLeaves ?? 0;
 
     // Step 1: Convert Half Days into Full Leaves
     const fullLeavesFromHalfDays = Math.floor(halfDayLeaves / 2);
@@ -82,6 +83,7 @@ const Payroll = () => {
           adjustments: inputData.adjustments ?? employee.adjustments,
           totalLeaves: inputData.totalLeaves ?? employee.totalLeaves,
           halfDayLeaves: inputData.halfDayLeaves ?? employee.halfDayLeaves,
+          paidLeaves: inputData.paidLeaves ?? employee.paidLeaves ?? payroll.paidLeaves,
           // Add any other fields that you want to override
         };
       });
@@ -168,6 +170,7 @@ const Payroll = () => {
               <th>Name</th>
               <th>Gross Salary</th>
               <th>Total Leaves</th>
+              <th>Paid Leaves</th>
               <th>Half Days</th>
               <th>Bonus</th>
               <th>Adjustments</th>
@@ -181,35 +184,59 @@ const Payroll = () => {
                 <td>{employee.name}</td>
                 <td>₹{employee.grossSalary}</td>
                 <td>
-                <input
-  type="number"
-  value={
-    manualInputs[employee.employeeId]?.totalLeaves?.toString() ??
-    employee.totalLeaves?.toString() ??
-    "0"
-  }
-  onChange={(e) => {
-    let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
-    value = value === "" ? "0" : value; // Ensure empty input resets to 0
-    let intValue = parseInt(value, 10) || 0; // Convert to integer safely
-    if (intValue < 0) intValue = 0; // Prevent negative values
-    if (intValue > 25) intValue = 25; // Prevent values greater than 25
-    handleInputChange(employee.employeeId, "totalLeaves", intValue);
-  }}
-  min="0"
-  max="25"
-  disabled={!employee.isEditable}
-  style={{
-    padding: "8px",
-    borderRadius: "8px",
-    width: "90px",
-    backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
-    border: "1px solid #ddd",
-    transition: "all 0.3s ease",
-  }}
-/>
+                  <input
+                      type="number"
+                      value={
+                              manualInputs[employee.employeeId]?.totalLeaves?.toString() ??
+                              employee.totalLeaves?.toString() ??
+                              "0"
+                            }
+                      onChange={(e) => {
+                              let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+                              value = value === "" ? "0" : value; // Ensure empty input resets to 0
+                              let intValue = parseInt(value, 10) || 0; // Convert to integer safely
+                              if (intValue < 0) intValue = 0; // Prevent negative values
+                              if (intValue > 25) intValue = 25; // Prevent values greater than 25
+                              handleInputChange(employee.employeeId, "totalLeaves", intValue);
+                            }}
+                            min="0"
+                            max="25"
+                            disabled={!employee.isEditable}
+                            style={{
+                              padding: "8px",
+                              borderRadius: "8px",
+                              width: "90px",
+                              backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
+                              border: "1px solid #ddd",
+                              transition: "all 0.3s ease",
+                            }}
+                        />
 
-</td>
+                    </td>
+<td>
+                <input
+                  type="number"
+                  value={manualInputs[employee.employeeId]?.paidLeaves ?? employee.paidLeaves ?? "0"}
+                  onChange={(e) => {
+                    let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+                    value = value === "" ? "0" : value; // Ensure empty input resets to 0
+                    let intValue = parseInt(value, 10) || 0; // Convert to integer safely
+                    if (intValue < 0) intValue = 0; // Prevent negative values
+                    if (intValue > 25) intValue = 25; // Prevent values greater than 25
+                    handleInputChange(employee.employeeId, "paidLeaves", e.target.value)}}
+                    min="0"
+                    max="25"
+                    disabled={!employee.isEditable}
+                    style={{
+                      padding: "8px",
+                      borderRadius: "8px",
+                      width: "90px",
+                      backgroundColor: employee.isEditable ? "#fff" : "#F5F5F5",
+                      border: "1px solid #ddd",
+                      transition: "all 0.3s ease",
+                    }}
+                />
+              </td>
 <td>
   <input
     type="number"
