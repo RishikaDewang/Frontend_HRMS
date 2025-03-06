@@ -245,11 +245,13 @@ const Payroll = () => {
       let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
       value = parseInt(value, 10) || 0; // Ensure it's an integer
       if (value < 0) value = 0; // Prevent negative values
-      if (value > 25) value = 25; // Prevent values greater than 25
+      // if (value > 25) value = 25; // Prevent values greater than 25
+      if (intValue > maxDaysInMonth) intValue = maxDaysInMonth; // Restrict to days in month
       handleInputChange(employee.employeeId, "halfDayLeaves", value);
     }}
     min="0"
-    max="25"
+    // max="25"
+    max={new Date(year, month, 0).getDate()} // Dynamically set max value
     disabled={!employee.isEditable}
     style={{
       padding: "8px",
@@ -310,10 +312,10 @@ const Payroll = () => {
   }}
 />
 
-                </td>
-                <td style={{ fontWeight: "bold", color: "#28A745" }}>₹{calculateNetSalary(employee).toFixed(2)}</td>
-              </tr>
-            ))}
+</td>
+   <td style={{ fontWeight: "bold", color: "#28A745" }}>₹{calculateNetSalary(employee).toFixed(2)}</td>
+      </tr>
+         ))}
           </tbody>
         </table>
       )}

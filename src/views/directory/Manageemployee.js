@@ -48,6 +48,11 @@ export default function ManageEmployee() {
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedLineManagerId, setSelectedLineManagerId] = useState('');
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+  const [grossSalary, setGrossSalary] = useState('');
+const [paidLeaves, setPaidLeaves] = useState('');
+const [grossSalaryError, setGrossSalaryError] = useState('');
+const [paidLeavesError, setPaidLeavesError] = useState('');
+
   const [loading, setLoading] = useState(false);
   const [fullNameError, setFullNameError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -136,6 +141,8 @@ export default function ManageEmployee() {
     setSelectedRole(event.target.value);
   };
   const handleSubmit = () => {
+    setGrossSalaryError('');
+  setPaidLeavesError('');
     setFullNameError('');
     setEmailError('');
     // setPasswordError('');
@@ -172,6 +179,16 @@ export default function ManageEmployee() {
     if (!isEmailValid) {
       return;
     }
+    if (!grossSalary) {
+      setGrossSalaryError('Please enter gross salary');
+      isValid = false;
+    }
+    if (!paidLeaves) {
+      setPaidLeavesError('Please enter paid leaves');
+      isValid = false;
+    }
+  
+    if (!isValid) return;
     // let isPasswordValid = true;
     // if (!password) {
     //   setPasswordError('Please enter your password');
@@ -222,6 +239,8 @@ export default function ManageEmployee() {
       fullName: first,
       email: email,
       password: password,
+      grossSalary: parseFloat(grossSalary), // Include Gross Salary
+      paidLeaves: parseInt(paidLeaves) //  Include Paid Leaves
     }
     // if (isEditModalOpen && selectedEmployeeId) {
     //  dispatch(updateEmployee(editEmployeeDetails,selectedEmployeeId ))
@@ -238,6 +257,8 @@ export default function ManageEmployee() {
     setPassword("")
     setSelectedLineManagerId("")
     setSelectedRole("")
+    setGrossSalary('');
+    setPaidLeaves('');
     closeModal();
   }
   function handleSaveClick(row) {
@@ -316,6 +337,8 @@ export default function ManageEmployee() {
           password: selectedEmployee.password,
           fkRoleId: selectedEmployee.selectedRole,
           lineManagerId: selectedEmployee.selectedLineManagerId,
+          grossSalary: selectedEmployee.grossSalary,   // :white_check_mark: Load Gross Salary
+        paidLeaves: selectedEmployee.paidLeaves     // :white_check_mark: Load Paid Leaves
         });
         setFullNameError('');
         setEmailError('');
@@ -339,6 +362,8 @@ export default function ManageEmployee() {
     setEmailError('');
     setFullNameHelperText('');
     setEmailHelperText('');
+    setGrossSalaryError('');
+    setPaidLeavesError('');
 
     // Perform validation
     let isValid = true;
@@ -369,6 +394,16 @@ export default function ManageEmployee() {
     if (!isEmailValid) {
       return;
     }
+    if (!editEmployeeDetails.grossSalary) {
+      setGrossSalaryError('Please enter gross salary');
+      isValid = false;
+    }
+    if (!editEmployeeDetails.paidLeaves) {
+      setPaidLeavesError('Please enter paid leaves');
+      isValid = false;
+    }
+  
+    if (!isValid) return;
 
 
     // If validation fails, return without submitting
@@ -488,6 +523,36 @@ export default function ManageEmployee() {
               pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
             }}
           />
+          <TextField
+  label="Gross Salary"
+  type="number"
+  value={isEditModalOpen ? editEmployeeDetails?.grossSalary || '' : grossSalary}
+  onChange={(e) => {
+    isEditModalOpen
+      ? handleEditFieldChange('grossSalary', e.target.value)
+      : setGrossSalary(e.target.value);
+  }}
+  fullWidth
+  margin="normal"
+  error={Boolean(grossSalaryError)}
+  helperText={grossSalaryError}
+/>
+
+<TextField
+  label="Paid Leaves"
+  type="number"
+  value={isEditModalOpen ? editEmployeeDetails?.paidLeaves || '' : paidLeaves}
+  onChange={(e) => {
+    isEditModalOpen
+      ? handleEditFieldChange('paidLeaves', e.target.value)
+      : setPaidLeaves(e.target.value);
+  }}
+  fullWidth
+  margin="normal"
+  error={Boolean(paidLeavesError)}
+  helperText={paidLeavesError}
+/>
+
           {/* {!isEditModalOpen && <TextField
             label="Password"
             type='password'
