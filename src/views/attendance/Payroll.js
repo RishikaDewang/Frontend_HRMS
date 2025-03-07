@@ -7,6 +7,7 @@ const Payroll = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [fetching, setFetching] = useState(false);
   const [saving, setSaving] = useState(false);
+  const getMaxDaysInMonth = (month, year) => new Date(year, month, 0).getDate();
   const fetchPayrollData = async () => {
     setFetching(true);
     try {
@@ -66,10 +67,12 @@ const Payroll = () => {
     const incomeTax = employee.incomeTax || 0;
     const bonus = inputData.bonus ?? employee.bonus ?? 0;
     const adjustments = inputData.adjustments ?? employee.adjustments ?? 0;
-
-    // Step 6: Final Net Salary Calculation
-    return grossSalary - (leaveDeduction + halfDayDeduction + professionalTax + incomeTax) + (bonus + adjustments);
-};
+      // Final Net Salary Calculation (Ensuring it doesn’t go below 0)
+    
+  // Step 6: Final Net Salary Calculation
+  let netSalary = grossSalary - (leaveDeduction + halfDayDeduction + professionalTax + incomeTax) + (bonus + adjustments);
+  return Math.max(netSalary, 0); // Ensure net salary is not negative
+  };
 
 
   const handleSubmit = async () => {
@@ -183,6 +186,7 @@ const Payroll = () => {
                 <td>{employee.employeeId}</td>
                 <td>{employee.name}</td>
                 <td>₹{employee.grossSalary}</td>
+              
                 <td>
                   <input
                       type="number"
@@ -191,16 +195,21 @@ const Payroll = () => {
                               employee.totalLeaves?.toString() ??
                               "0"
                             }
+                           
                       onChange={(e) => {
                               let value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
                               value = value === "" ? "0" : value; // Ensure empty input resets to 0
                               let intValue = parseInt(value, 10) || 0; // Convert to integer safely
+
+                              let maxDays = getMaxDaysInMonth(month, year); // Get max days of selected month
                               if (intValue < 0) intValue = 0; // Prevent negative values
-                              if (intValue > 25) intValue = 25; // Prevent values greater than 25
+                              // if (intValue > 25) intValue = 25; // Prevent values greater than 25
+                              if (intValue > maxDays) intValue = maxDays; // Prevent values greater than month's days
                               handleInputChange(employee.employeeId, "totalLeaves", intValue);
                             }}
                             min="0"
-                            max="25"
+                            // max="25"
+                            max={getMaxDaysInMonth(month, year)} // Dynamically set max attribute
                             disabled={!employee.isEditable}
                             style={{
                               padding: "8px",

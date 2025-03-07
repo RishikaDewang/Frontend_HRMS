@@ -189,25 +189,7 @@ const [paidLeavesError, setPaidLeavesError] = useState('');
     }
   
     if (!isValid) return;
-    // let isPasswordValid = true;
-    // if (!password) {
-    //   setPasswordError('Please enter your password');
-    //   setPasswordHelperText('Password is required');
-    //   isPasswordValid = false;
-    // } else if (
-    //   !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/.test(password)
-    // ) {
-    //   setPasswordError('Invalid password');
-    //   setPasswordHelperText(
-    //     'Password must be at least 8 characters long and include at least 1 uppercase letter, 1 number, and 1 special character'
-    //   );
-    //   isPasswordValid = false;
-    // }
-
-    // If password validation fails, return without submitting
-    // if (!isPasswordValid) {
-    //   return;
-    // }
+    
     if (!isEditModalOpen) {
       if (!selectedRole) {
         setRoleError('Role is required ');
@@ -239,17 +221,10 @@ const [paidLeavesError, setPaidLeavesError] = useState('');
       fullName: first,
       email: email,
       password: password,
-      grossSalary: parseFloat(grossSalary), // Include Gross Salary
-      paidLeaves: parseInt(paidLeaves) //  Include Paid Leaves
+      grossSalary: parseFloat(grossSalary), // :white_check_mark: Include Gross Salary
+      paidLeaves: parseInt(paidLeaves) // :white_check_mark: Include Paid Leaves
     }
-    // if (isEditModalOpen && selectedEmployeeId) {
-    //  dispatch(updateEmployee(editEmployeeDetails,selectedEmployeeId ))
-    //  closeModal();
-    // } else {
-    //   // Make API call for adding a new employee
-    //   dispatch(createEmployee(employeeData));
-    //   closeModal();
-    // }
+    
     dispatch(createEmployee(employeeData,page, rowsPerPage))
     setLoading(true)
     setFirst("")
@@ -301,9 +276,7 @@ const [paidLeavesError, setPaidLeavesError] = useState('');
     setPage(newPage);
     // dispatch(fetchEmployee(newPage, rowsPerPage));
   };
-  // const startIndex = (page - 1) * rowsPerPage;
-  // const endIndex = startIndex + rowsPerPage;
-  // const paginatedData = employee ? employee.slice(startIndex, endIndex) : [];
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
@@ -553,22 +526,7 @@ const [paidLeavesError, setPaidLeavesError] = useState('');
   helperText={paidLeavesError}
 />
 
-          {/* {!isEditModalOpen && <TextField
-            label="Password"
-            type='password'
-            // value={password}
-            value={isEditModalOpen ? editEmployeeDetails?.password || '' : password}
-            // onChange={(e) => setPassword(e.target.value)}
-            onChange={(e) => {
-              isEditModalOpen
-                ? handleEditFieldChange('password', e.target.value)
-                : setPassword(e.target.value);
-            }}
-            margin="normal"
-            fullWidth
-            error={Boolean(passwordError)}
-            helperText={passwordHelperText}
-          />} */}
+          {}
           <FormControl fullWidth margin="normal">
        <InputLabel id="role-label">Role</InputLabel>
 <Select
